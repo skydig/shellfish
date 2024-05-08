@@ -1,0 +1,12 @@
+[package]
+name = "shellfish-example"
+version = "0.6.0"
+authors = ["John Toohey <john_t@mailo.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-std = "1.12.0"
+rustyline = "13.0.0"
+shellfish = { path = "../..", features = [ "app", "async-std", "async" ] }

@@ -1,0 +1,37 @@
+[package]
+name = "shellfish"
+version = "0.9.0"
+authors = ["John Toohey <john_t@mailo.com>"]
+edition = "2018"
+description = "A library to run custom interactive shells."
+readme = "README.md"
+repository = "https://gitlab.com/john_t/shellfish"
+license = "MIT OR Apache-2.0"
+keywords = ["shell", "cli", "interactive", "terminal"]
+categories = ["command-line-interface"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rustyline = { version = "13.0.0", optional = true }
+serde = { version = "1", optional = true }
+serde_json = { version = "1", optional = true }
+home = { version = "0.5", optional = true }
+async-trait = { version = "0.1", optional = true }
+async-std = { version = "1", optional = true, features = ["attributes"] }
+tokio = { version = "1", optional = true, features = [ "io-std", "fs", "io-util" ] }
+cfg-if = { version = "1", optional = true }
+clap = { version = "4", optional = true }
+thiserror = "1"
+yansi = "0.5"
+
+[features]
+default = [ "rustyline" ]
+app = [ "serde", "serde_json", "home" ]
+async = [ "async-trait", "cfg-if" ]
+
+[build-dependencies]
+version_check = "0.9.4"
+
+[package.metadata.docs.rs]
+features = [ "app", "async", "rustyline", "clap" ]

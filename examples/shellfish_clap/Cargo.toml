@@ -1,0 +1,12 @@
+[package]
+name = "shellfish_clap"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-std = "1.12.0"
+clap = { version = "*", features = ["derive", "cargo"] }
+rustyline = "13.0.0"
+shellfish = { path = "../..", features = [ "clap", "async", "async-std" ] }
