@@ -1,6 +1,5 @@
 use async_std::io::ReadExt;
 use clap::Parser;
-use clap::command;
 use rustyline::DefaultEditor;
 use shellfish::{clap_command, handler::DefaultAsyncHandler, Shell};
 use std::path::PathBuf;
