@@ -1,3 +1,5 @@
+# This repo comes from https://gitlab.com/john_t/shellfish and with something updated  
+
 # Shellfish
 
 Shellfish is a library to include interactive shells within a program. This may be useful when building terminal application where a persistent state is needed, so a basic cli is not enough; but a full tui is over the scope of the project. Shellfish provides a middle way, allowing interactive command editing whilst saving a state that all commands are given access to.
