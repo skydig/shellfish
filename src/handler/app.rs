@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use indexmap::IndexMap;
 use std::env;
 use std::path::PathBuf;
 
@@ -56,7 +57,7 @@ impl<T> Handler<T> for DefaultCommandLineHandler {
     fn handle(
         &self,
         line: Vec<String>,
-        commands: &HashMap<&str, Command<T>>,
+        commands: &IndexMap<&str, Command<T>>,
         state: &mut T,
         description: &str,
     ) -> bool {
@@ -82,7 +83,7 @@ impl<T> Handler<T> for DefaultCommandLineHandler {
                     println!("Where [SUBCOMMAND] is one of:");
 
                     // Create a list of commands
-                    let mut cmd_help = HashMap::new();
+                    let mut cmd_help = IndexMap::new();
                     let mut cmd_len = 4;
 
                     // Add the built ins

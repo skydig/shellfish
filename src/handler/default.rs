@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use indexmap::IndexMap;
 
 use yansi::Paint;
 
@@ -20,7 +21,7 @@ pub trait Handler<T> {
     fn handle(
         &self,
         args: Vec<String>,
-        commands: &HashMap<&str, Command<T>>,
+        commands: &IndexMap<&str, Command<T>>,
         state: &mut T,
         description: &str,
     ) -> bool;
@@ -35,7 +36,7 @@ impl<T> Handler<T> for DefaultHandler {
     fn handle(
         &self,
         line: Vec<String>,
-        commands: &HashMap<&str, Command<T>>,
+        commands: &IndexMap<&str, Command<T>>,
         state: &mut T,
         description: &str,
     ) -> bool {

@@ -8,7 +8,8 @@
 //! **Note: Normal handlers won't work as they MUST assume that
 //! the first argument is that of the binaries name.**
 
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use indexmap::IndexMap;
 use std::convert::TryFrom;
 use std::env;
 use std::error::Error;
@@ -32,7 +33,7 @@ pub struct App<
     T: Serialize + for<'a> Deserialize<'a>,
     H: CommandLineHandler,
 > {
-    pub commands: HashMap<&'b str, Command<T>>,
+    pub commands: IndexMap<&'b str, Command<T>>,
     pub state: T,
     pub handler: H,
     pub description: String,
@@ -85,7 +86,7 @@ impl<T: Serialize + for<'a> Deserialize<'a>>
     /// Creates a new shell
     pub fn new(state: T, project_name: String) -> Result<Self, Box<dyn Error>> {
         let mut this = Self {
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler: DefaultCommandLineHandler {
                 proj_name: Some(project_name),
@@ -109,7 +110,7 @@ impl<T: Serialize + for<'a> Deserialize<'a>, H: CommandLineHandler>
         handler: H,
     ) -> Result<Self, Box<dyn Error>> {
         let mut this = Self {
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler,
             description: String::new(),

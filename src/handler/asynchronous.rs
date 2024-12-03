@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use indexmap::IndexMap;
 
 use async_trait::async_trait;
 use yansi::Paint;
@@ -13,7 +14,7 @@ pub trait AsyncHandler<T: Send> {
     async fn handle_async(
         &self,
         args: Vec<String>,
-        commands: &HashMap<&str, Command<T>>,
+        commands: &IndexMap<&str, Command<T>>,
         state: &mut T,
         description: &str,
     ) -> bool;
@@ -29,7 +30,7 @@ impl<T: Send> AsyncHandler<T> for DefaultAsyncHandler {
     async fn handle_async(
         &self,
         line: Vec<String>,
-        commands: &HashMap<&str, Command<T>>,
+        commands: &IndexMap<&str, Command<T>>,
         state: &mut T,
         description: &str,
     ) -> bool {

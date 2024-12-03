@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use indexmap::IndexMap;
 use std::fmt::Display;
 use std::io;
 
@@ -29,7 +30,7 @@ pub struct Shell<'a, T, M: Display, H, I: InputHandler> {
     /// This is a list of commands for the shell. The hashmap key is the
     /// name of the command (ie `"greet"`) and the value is a wrapper
     /// to the function it corresponds to (as well as help information.)
-    pub commands: HashMap<&'a str, Command<T>>,
+    pub commands: IndexMap<&'a str, Command<T>>,
     /// This is the state of the shell. This stores any values that you
     /// need to be persisted over multiple shell commands. For example
     /// it may be a simple counter or maybe a session ID.
@@ -52,7 +53,7 @@ impl<'a, T, M: Display> Shell<'a, T, M, handler::DefaultHandler, IO> {
     pub fn new(state: T, prompt: M) -> Self {
         Shell {
             prompt,
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler: handler::DefaultHandler(),
             description: String::new(),
@@ -71,7 +72,7 @@ impl<'a, T, M: Display> Shell<'a, T, M, handler::DefaultAsyncHandler, IO> {
     pub fn new_async(state: T, prompt: M) -> Self {
         Shell {
             prompt,
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler: handler::DefaultAsyncHandler(),
             description: String::new(),
@@ -90,7 +91,7 @@ impl<'a, T, M: Display, H: Handler<T>, I: InputHandler> Shell<'a, T, M, H, I> {
     ) -> Self {
         Shell {
             prompt,
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler,
             description: String::new(),
@@ -142,7 +143,7 @@ impl<'a, T: Send, M: Display, H: AsyncHandler<T>, I: InputHandler>
     ) -> Self {
         Shell {
             prompt,
-            commands: HashMap::new(),
+            commands: IndexMap::new(),
             state,
             handler,
             description: String::new(),
